@@ -11,8 +11,13 @@ Rails.application.configure do
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
   config.log_formatter = ::Logger::Formatter.new
+
   config.lograge.enabled = true
   config.lograge.custom_options = lambda do |event|
     { params: event.payload[:params].reject { |k| %w(controller action).include? k } }
+  end
+
+  if ENV["MEMCACHEDCLOUD_SERVERS"]
+    config.cache_store = :dalli_store, ENV["MEMCACHEDCLOUD_SERVERS"].split(','), { :username => ENV["MEMCACHEDCLOUD_USERNAME"], :password => ENV["MEMCACHEDCLOUD_PASSWORD"] }
   end
 end
