@@ -50,4 +50,7 @@
       "description": "Personal token for Github API",
     },
   },
+  "addons": [
+    "memcachedcloud:30",
+  ],
 }
