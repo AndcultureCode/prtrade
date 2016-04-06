@@ -9,6 +9,6 @@ Bundler.require(*Rails.groups)
 
 module SlackReview
   class Application < Rails::Application
-    config.cache_store = :memcached_store
+    config.cache_store = :dalli_store
   end
 end
