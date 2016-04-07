@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+# frozen_string_literal: true
 
 require "pathname"
 require "thor"
@@ -9,7 +10,7 @@ def shell
 end
 
 def say(*args)
-  shell.say *args
+  shell.say(*args)
 end
 
 def header(text)
@@ -49,7 +50,7 @@ Dir.chdir APP_ROOT do
   system "bundle check || bundle install"
 
   header "Copying sample files"
-  if config_file = copy_sample(:application)
+  if (config_file = copy_sample(:application))
     header "Please provide necessary values for #{config_file}"
     fill config_file
   end
