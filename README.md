@@ -18,7 +18,13 @@ Example of usage:
 
 ## Prerequisites
 - You will need a Github's personal API token. Either generate one or ask other developer for the company's token.
-- Your Github organization will also need to setup a webhook that will trigger on the "Pull Request" event (Pull request opened, closed, assigned, labeled, or synchronized).
+
+## GitHub Setup
+- Go to ```https://github.com/organizations/COMPANY-NAME/settings/hooks/new```.
+- Set ```Payload URL``` to ```https://YOUR-DOMAIN.COM/api/v1/pull_requests/update_cache```
+- Set ```Content type``` to ```application/json```
+- Select the ```Pull request``` event to trigger this webhook.
+- The webhook secret will be needed later.
 
 ## Slack Setup
 - Go to ```https://COMPANY-NAME.slack.com/apps/manage/custom-integrations```.
@@ -26,6 +32,7 @@ Example of usage:
 - Select the channel you want to have it integrated with.
 - Put ```prtrade``` into trigger world field.
 - Put ```https://YOUR-DOMAIN.COM/api/v1/pull_requests/status``` into URL field.
+- The webhook token will be needed later.
 
 ## Installation
 - Clone the repository and ```cd``` to it's directory.
