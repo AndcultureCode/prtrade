@@ -12,8 +12,14 @@ engines:
   fixme:
     enabled: true
   rubocop:
-    enabled: false
+    enabled: true
+ratings:
+  paths:
+  - "**.rb"
 exclude_paths:
 - config/
 - db/
 - spec/
+- Rakefile
+- Gemfile
+- Guardfile
