@@ -1,8 +1,8 @@
 #!/usr/bin/ruby
 
-require 'pathname'
-require 'thor'
-require 'yaml'
+require "pathname"
+require "thor"
+require "yaml"
 
 def shell
   @shell ||= Thor::Shell::Color.new
@@ -34,14 +34,14 @@ def ask(question, color)
 end
 
 def fill(file)
-  config = YAML::load_file(file)
-  config.each do |key, value|
+  config = YAML.load_file(file)
+  config.each do |key, _value|
     config[key] = ask "#{key}: ", :red
   end
   File.open(file, "w") { |f| f.write config.to_yaml }
 end
 
-APP_ROOT = Pathname.new File.expand_path('../../',  __FILE__)
+APP_ROOT = Pathname.new File.expand_path("../../", __FILE__)
 
 Dir.chdir APP_ROOT do
   header "Installing dependencies"
