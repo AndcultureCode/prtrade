@@ -38,7 +38,7 @@ def fill(file)
   config.each do |key, value|
     config[key] = ask "#{key}: ", :red
   end
-  File.open(file, 'w') { |f| f.write config.to_yaml }
+  File.open(file, "w") { |f| f.write config.to_yaml }
 end
 
 APP_ROOT = Pathname.new File.expand_path('../../',  __FILE__)
