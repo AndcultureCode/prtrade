@@ -12,7 +12,7 @@ engines:
   fixme:
     enabled: true
   rubocop:
-    enabled: false
+    enabled: true
 exclude_paths:
 - config/
 - db/
