@@ -7,50 +7,50 @@
   "env": {
     "secret_key_base": {
       "description": "A secret key for verifying the integrity of signed cookies.",
-      "generator": "secret",
+      "generator": "secret"
     },
     "default_owner": {
-      "description": "Github organization that is the default owner of traded repositories",
+      "description": "Github organization that is the default owner of traded repositories"
     },
     "review_label": {
       "description": "Only pull requests labeled with this label will be fetched by the application as ready for review",
-      "value": "Ready for Review",
+      "value": "Ready for Review"
     },
     "bot_name": {
       "description": "The name of the Slack bot that will post the suggestions for trade",
-      "value": "PR Trade",
+      "value": "PR Trade"
     },
     "usage_bot_name": {
       "description": "The name of the Slack bot that will post the correct usage of the application",
-      "value": "PR Trade Usage",
+      "value": "PR Trade Usage"
     },
     "icon_emoji": {
       "description": "Slack bot's avatar will be the emoji specified here",
-      "value": ":arrows_clockwise:",
+      "value": ":arrows_clockwise:"
     },
     "usage_icon_emoji": {
       "description": "Slack bot's avatar will change to the one specified here when showing the correct usage of the application",
-      "value": ":point_right::skin-tone-2:",
+      "value": ":point_right::skin-tone-2:"
     },
     "error_icon_emoji": {
       "description": "Slack bot's avatar will change to the one specified here when an error will occur",
-      "value": ":exclamation:",
+      "value": ":exclamation:"
     },
     "max_suggestions": {
       "description": "The maximum number of suggestions that will be displayed",
-      "value": "5",
+      "value": "5"
     },
     "github_webhook_secret": {
-      "description": "This value has to match the secret for the webhook on Github.",
+      "description": "This value has to match the secret for the webhook on Github."
     },
     "slack_api_token": {
-      "description": "The token from the Slack webhook.",
+      "description": "The token from the Slack webhook."
     },
     "github_api_token": {
-      "description": "Personal token for Github API",
-    },
+      "description": "Personal token for Github API"
+    }
   },
   "addons": [
-    "memcachedcloud:30",
-  ],
+    "memcachedcloud:30"
+  ]
 }
