@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :pull_requests, only: [] do
         post :status, on: :collection
-        post :update_cache, on: :collection
+        post :update, on: :collection
       end
     end
   end

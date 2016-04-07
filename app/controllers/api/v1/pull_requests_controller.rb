@@ -2,9 +2,9 @@
 module Api
   module V1
     class PullRequestsController < BaseController
-      skip_before_action :authenticate!, only: [:update_cache]
-      skip_before_action :valid_trigger?, only: [:update_cache]
-      before_action :authenticate_webhook!, only: [:update_cache]
+      skip_before_action :authenticate!, only: [:update]
+      skip_before_action :valid_trigger?, only: [:update]
+      before_action :authenticate_webhook!, only: [:update]
 
       def status
         request = PullRequests::TradeRequest.new(request_text: params["text"])
@@ -14,7 +14,7 @@ module Api
         render json: error.slack_response
       end
 
-      def update_cache
+      def update
         action = JSON.parse(request.raw_post)["action"] # Needed because the "action" field is overriden by Rails
         PullRequests::CacheUpdater.new(params: params.merge(action: action)).call
         render json: { text: I18n.t("cache.success") }, status: :ok

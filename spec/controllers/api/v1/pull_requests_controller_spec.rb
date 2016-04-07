@@ -45,7 +45,7 @@ describe Api::V1::PullRequestsController do
     end
   end
 
-  describe '#update_cache' do
+  describe '#update' do
     before do
       expect(controller).to receive(:sha) { "123" }
     end
@@ -53,7 +53,7 @@ describe Api::V1::PullRequestsController do
     context "with invalid secret" do
       before do
         expect(Rack::Utils).to receive(:secure_compare) { false }
-        post :update_cache
+        post :update
       end
 
       it_behaves_like "unauthorized"
@@ -68,7 +68,7 @@ describe Api::V1::PullRequestsController do
         allow(request).to receive(:raw_post).and_return('{"action":"labeled"}')
         expect(Rack::Utils).to receive(:secure_compare) { true }
         expect(cache_updater).to receive(:new) { double(call: true) }
-        post :update_cache
+        post :update
       end
 
       it "returns status ok" do
