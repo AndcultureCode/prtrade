@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-describe Api::V1::PullRequestsController do
-  describe "#status" do
+describe HooksController do
+  describe "#slack" do
     let(:token) { ENV["slack_api_token"] }
     let(:trade_request) { class_double("PullRequests::TradeRequest").as_stubbed_const }
 
@@ -19,7 +19,7 @@ describe Api::V1::PullRequestsController do
       end
 
       it "returns the result of TradeResponse#get" do
-        get :status, token: token, text: trade_request_text, trigger_word: "prtrade"
+        get :slack, token: token, text: trade_request_text, trigger_word: "prtrade"
         expect(JSON.parse(response.body)).to eq("response" => "trade_response_get")
       end
     end
@@ -29,7 +29,7 @@ describe Api::V1::PullRequestsController do
 
       it "returns an error message from the SlackError exception" do
         expect(trade_request).to receive(:new).and_raise(SlackError)
-        get :status, token: token, text: empty_trade_request_text, trigger_word: "prtrade"
+        get :slack, token: token, text: empty_trade_request_text, trigger_word: "prtrade"
         expect(JSON.parse(response.body).keys).to include("username", "attachments")
       end
     end
@@ -39,13 +39,13 @@ describe Api::V1::PullRequestsController do
 
       it "returns an error message from the SlackError exception" do
         expect(trade_request).to receive(:new).and_raise(SlackError)
-        get :status, token: token, text: invalid_trade_request_text, trigger_word: "prtrade"
+        get :slack, token: token, text: invalid_trade_request_text, trigger_word: "prtrade"
         expect(JSON.parse(response.body).keys).to include("username", "attachments")
       end
     end
   end
 
-  describe '#update' do
+  describe '#github' do
     before do
       expect(controller).to receive(:sha) { "123" }
     end
@@ -53,7 +53,7 @@ describe Api::V1::PullRequestsController do
     context "with invalid secret" do
       before do
         expect(Rack::Utils).to receive(:secure_compare) { false }
-        post :update
+        post :github
       end
 
       it_behaves_like "unauthorized"
@@ -68,7 +68,7 @@ describe Api::V1::PullRequestsController do
         allow(request).to receive(:raw_post).and_return('{"action":"labeled"}')
         expect(Rack::Utils).to receive(:secure_compare) { true }
         expect(cache_updater).to receive(:new) { double(call: true) }
-        post :update
+        post :github
       end
 
       it "returns status ok" do
