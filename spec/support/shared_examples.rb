@@ -13,7 +13,7 @@ end
 RSpec.shared_examples "authorized with valid trigger word" do
   context "invalid token" do
     before do
-      get :status, trigger_word: Api::V1::BaseController::SUPPORTED_TRIGGER_WORDS.sample
+      get :slack, trigger_word: BaseController::SUPPORTED_TRIGGER_WORDS.sample
     end
 
     it_behaves_like "unauthorized"
@@ -22,12 +22,12 @@ RSpec.shared_examples "authorized with valid trigger word" do
   context "valid token" do
     context "invalid trigger word" do
       it "returns unprocessable_entity" do
-        get :status, token: ENV["slack_api_token"]
+        get :slack, token: ENV["slack_api_token"]
         expect(response).to have_http_status(422)
       end
 
       it "returns json" do
-        get :status, token: ENV["slack_api_token"]
+        get :slack, token: ENV["slack_api_token"]
         unprocessable_entity_body = { "text" => I18n.t("shared.unprocessable_entity") }
         expect(JSON.parse(response.body)).to eq(unprocessable_entity_body)
       end

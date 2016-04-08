@@ -25,7 +25,7 @@ Example of usage:
 - Select ```Outgoing WebHooks``` and click ```Add Outgoing WebHook```.
 - Select the channel you want to have it integrated with.
 - Put ```prtrade``` into trigger world field.
-- Put ```https://YOUR-DOMAIN.COM/api/v1/pull_requests/status``` into URL field.
+- Put ```https://YOUR-DOMAIN.COM/hooks/slack``` into URL field.
 
 ## Installation
 - Clone the repository and ```cd``` to it's directory.
