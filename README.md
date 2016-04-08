@@ -21,7 +21,7 @@ Example of usage:
 
 ## GitHub Setup
 - Go to ```https://github.com/organizations/COMPANY-NAME/settings/hooks/new```.
-- Set ```Payload URL``` to ```https://YOUR-DOMAIN.COM/api/v1/pull_requests/update_cache```
+- Set ```Payload URL``` to ```https://YOUR-DOMAIN.COM/hooks/github```
 - Set ```Content type``` to ```application/json```
 - Select the ```Pull request``` event to trigger this webhook.
 - The webhook secret will be needed later.
